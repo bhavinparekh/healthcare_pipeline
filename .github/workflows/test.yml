@@ -23,4 +23,5 @@ jobs:
           pip install pytest pandas pydantic
       - name: Run tests
         run: |
+          export PYTHONPATH=${PYTHONPATH}:$(pwd)/scripts
           pytest tests/ -v
