@@ -24,4 +24,5 @@ jobs:
       - name: Run tests
         run: |
           export PYTHONPATH=${PYTHONPATH}:$(pwd)/scripts
+          export TEST_MODE=true
           pytest tests/ -v

@@ -64,7 +64,9 @@ def test_validate_data():
         assert "Out of range" not in issues, "Validation issues detected"
 
     # Clean up
-
+    for file in [ f"{output_dir}/vitals.csv", f"{output_dir}/lab_results.csv", f"{output_dir}/validation_issues.txt"]:
+        if os.path.exists(file):
+            os.remove(file)
     if os.path.exists(output_dir):
         os.rmdir(output_dir)
     if os.path.exists(test_input_dir) and not os.listdir(test_input_dir):  # Only remove if empty
