@@ -2,16 +2,23 @@ import pandas as pd
 import logging
 from pathlib import Path
 import json
+import os
 from config_model import PipelineConfig
 
-def validate_data():
+def validate_data(config_file="pipeline_config.json"):
     # Configure logging
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
+    # Determine config path based on environment
+    config_dir = "/opt/airflow/config" if os.environ.get("DOCKER_ENV", "false").lower() == "true" else "./config"
+    config_path = os.path.join(config_dir, config_file if config_file != "test_pipeline_config.json" else config_file)
+    if config_file == "test_pipeline_config.json" and os.environ.get("TEST_MODE", "false").lower() != "true":
+        config_path = os.path.join(config_dir, "pipeline_config.json")
+
     try:
         # Load and validate configuration
-        with open("/opt/airflow/config/pipeline_config.json", "r") as f:
+        with open(config_path, "r") as f:
             config_data = json.load(f)
         config = PipelineConfig(**config_data).dict()
 
