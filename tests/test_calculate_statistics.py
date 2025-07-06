@@ -38,6 +38,10 @@ def test_calculate_statistics():
         "date_of_birth": ["1990-01-01"]
     })
 
+    # Convert measurement_date to datetime
+    vitals_data["measurement_date"] = pd.to_datetime(vitals_data["measurement_date"])
+    labs_data["test_date"] = pd.to_datetime(labs_data["test_date"])
+
     # Use existing test_pipeline_config.json (no creation if it exists)
     config_dir = "./config"
     config_path = f"{config_dir}/test_pipeline_config.json"
