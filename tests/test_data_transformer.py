@@ -77,6 +77,4 @@ def test_transform_data():
         os.rmdir(validated_input_dir)
     if os.path.exists("./data/output") and not os.listdir("./data/output"):
         os.rmdir("./data/output")
-    if os.path.exists("./data") and not os.listdir("./data"):
-        os.rmdir("./data")
     del os.environ["TEST_MODE"]
