@@ -1,12 +1,13 @@
 import sys
 import os
 import shutil
+import pandas as pd
+import logging
+
 # Add scripts directory to Python path (optional, since workflow sets it)
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from data_transformer import transform_data  # Should work with workflow PYTHONPATH
-import pandas as pd
-import logging
+from data_transformer import transform_data
 
 # Configure logging for testing
 logging.basicConfig(level=logging.INFO)
@@ -68,13 +69,15 @@ def test_transform_data():
     assert transformed_labs["transformed_result"].iloc[0] == 18.0, "Result transformation incorrect (expected 12 * 1.5 = 18.0)"
 
     # Clean up
-    for file in [ f"{transformed_output_dir}/vitals.csv", f"{transformed_output_dir}/lab_results.csv"]:
+    for file in [f"{transformed_output_dir}/vitals.csv", f"{transformed_output_dir}/lab_results.csv"]:
         if os.path.exists(file):
             os.remove(file)
     if os.path.exists(transformed_output_dir):
-        os.rmdir(transformed_output_dir)
+        shutil.rmtree(transformed_output_dir)  # Use rmtree to remove non-empty directories
     if os.path.exists(validated_input_dir) and not os.listdir(validated_input_dir):
         os.rmdir(validated_input_dir)
     if os.path.exists("./data/output") and not os.listdir("./data/output"):
         os.rmdir("./data/output")
+    if os.path.exists("./data") and not os.listdir("./data"):
+        os.rmdir("./data")
     del os.environ["TEST_MODE"]

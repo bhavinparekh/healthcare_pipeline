@@ -7,7 +7,7 @@ import logging
 # Add scripts directory to Python path (optional, since workflow sets it)
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from stats_calculator import calculate_statistics  # Corrected import
+from calculate_statistics import calculate_statistics
 
 # Configure logging for testing
 logging.basicConfig(level=logging.INFO)
@@ -85,9 +85,9 @@ def test_calculate_statistics():
         if os.path.exists(file):
             os.remove(file)
     if os.path.exists(stats_output_dir):
-        os.rmdir(stats_output_dir)
-    if os.path.exists(transformed_input_dir) and not os.listdir(transformed_input_dir):
-        os.rmdir(transformed_input_dir)
+        shutil.rmtree(stats_output_dir)  # Use rmtree to remove non-empty directories
+    if os.path.exists(transformed_input_dir):
+        shutil.rmtree(transformed_input_dir)  # Use rmtree to remove non-empty directories
     if os.path.exists("./data/output") and not os.listdir("./data/output"):
         os.rmdir("./data/output")
     if os.path.exists("./data") and not os.listdir("./data"):

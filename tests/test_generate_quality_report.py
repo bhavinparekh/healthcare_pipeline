@@ -7,7 +7,7 @@ import logging
 # Add scripts directory to Python path (optional, since workflow sets it)
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from quality_reporter import generate_quality_report  # Updated to match filename
+from quality_reporter import generate_quality_report
 
 # Configure logging for testing
 logging.basicConfig(level=logging.INFO)
@@ -76,9 +76,9 @@ def test_generate_quality_report():
         if os.path.exists(file):
             os.remove(file)
     if os.path.exists(reports_output_dir):
-        os.rmdir(reports_output_dir)
-    if os.path.exists(transformed_input_dir) and not os.listdir(transformed_input_dir):
-        os.rmdir(transformed_input_dir)
+        shutil.rmtree(reports_output_dir)  # Use rmtree to remove non-empty directories
+    if os.path.exists(transformed_input_dir):
+        shutil.rmtree(transformed_input_dir)  # Use rmtree to remove non-empty directories
     if os.path.exists("./data/output") and not os.listdir("./data/output"):
         os.rmdir("./data/output")
     if os.path.exists("./data") and not os.listdir("./data"):

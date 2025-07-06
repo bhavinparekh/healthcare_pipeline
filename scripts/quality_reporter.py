@@ -2,6 +2,7 @@ import pandas as pd
 import logging
 from pathlib import Path
 import json
+import os  
 from config_model import PipelineConfig
 
 def generate_quality_report(config_file="pipeline_config.json"):
@@ -18,7 +19,7 @@ def generate_quality_report(config_file="pipeline_config.json"):
 
         with open(config_path, "r") as f:
             config_data = json.load(f)
-        config = PipelineConfig(**config_data).model_dump()  # Updated from .dict()
+        config = PipelineConfig(**config_data).model_dump()
 
         # Extract config values
         output_dir = config["output_dir"]
