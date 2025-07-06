@@ -7,7 +7,7 @@ import logging
 # Add scripts directory to Python path (optional, since workflow sets it)
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from generate_quality_report import generate_quality_report  # Should work with workflow PYTHONPATH
+from quality_reporter import generate_quality_report  # Should work with workflow PYTHONPATH
 
 # Configure logging for testing
 logging.basicConfig(level=logging.INFO)
