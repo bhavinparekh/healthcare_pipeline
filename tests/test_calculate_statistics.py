@@ -7,7 +7,7 @@ import logging
 # Add scripts directory to Python path (optional, since workflow sets it)
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from stats_calculator import calculate_statistics  # Should work with workflow PYTHONPATH
+from stats_calculator import calculate_statistics  # Corrected import
 
 # Configure logging for testing
 logging.basicConfig(level=logging.INFO)
@@ -90,4 +90,6 @@ def test_calculate_statistics():
         os.rmdir(transformed_input_dir)
     if os.path.exists("./data/output") and not os.listdir("./data/output"):
         os.rmdir("./data/output")
+    if os.path.exists("./data") and not os.listdir("./data"):
+        os.rmdir("./data")
     del os.environ["TEST_MODE"]
