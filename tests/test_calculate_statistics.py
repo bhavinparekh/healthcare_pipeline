@@ -7,7 +7,7 @@ import logging
 # Add scripts directory to Python path (optional, since workflow sets it)
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'scripts'))
 
-from calculate_statistics import calculate_statistics
+from stats_calculator import calculate_statistics
 
 # Configure logging for testing
 logging.basicConfig(level=logging.INFO)
