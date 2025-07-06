@@ -1,0 +1,61 @@
+{
+  "input_dir": "/opt/airflow/data/input",
+  "output_dir": "/opt/airflow/data/output",
+  "vitals_file": "vitals.csv",
+  "labs_file": "lab_results.csv",
+  "vitals_sep": ";",
+  "labs_sep": ",",
+  "validated_subdir": "validated",
+  "transformed_subdir": "transformed",
+  "stats_subdir": "stats",
+  "reports_subdir": "reports",
+  "issues_file": "validation_issues.txt",
+  "date_format": "%Y-%m-%d",
+  "vitals_columns": [
+    "hospital_id",
+    "measurement_date",
+    "patient_id",
+    "vital_type",
+    "value",
+    "unit",
+    "date_of_birth"
+  ],
+  "labs_columns": [
+    "hospital_id",
+    "test_date",
+    "patient_id",
+    "test_type",
+    "result_value",
+    "reference_range",
+    "unit",
+    "date_of_birth"
+  ],
+  "vital_ranges": {
+    "blood_pressure_systolic": {
+      "min": 80,
+      "max": 200
+    },
+    "blood_pressure_diastolic": {
+      "min": 50,
+      "max": 120
+    },
+    "heart_rate": {
+      "min": 40,
+      "max": 200
+    },
+    "temperature": {
+      "min": 35,
+      "max": 42
+    }
+  },
+  "lab_ranges": {
+    "hemoglobin": {
+      "min": 10,
+      "max": 20
+    },
+    "glucose": {
+      "min": 50,
+      "max": 200
+    }
+  }
+}

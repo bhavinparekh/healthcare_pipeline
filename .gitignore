@@ -1,0 +1,51 @@
+# Python-specific exclusions
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+env.bak/
+venv.bak/
+
+# Airflow-specific exclusions
+airflow.db
+airflow-webserver.pid
+standalone_admin_password.txt
+logs/
+
+# Data directories (output)
+data/output/
+
+
+
+# Docker-specific exclusions
+docker-compose.override.yml
+docker-compose.yml.bak
+.docker/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Miscellaneous
+*.log
+*.bak
+*.tmp
+*.temp
