@@ -20,7 +20,7 @@ def validate_data(config_file="pipeline_config.json"):
         # Load and validate configuration
         with open(config_path, "r") as f:
             config_data = json.load(f)
-        config = PipelineConfig(**config_data).dict()
+        config = PipelineConfig(**config_data).model_dump()  # Updated from .dict()
 
         # Extract config values
         input_dir = config["input_dir"]
@@ -138,12 +138,15 @@ def validate_data(config_file="pipeline_config.json"):
                 issues.append(f"Missing {col} in labs: {count} records")
                 logger.warning(f"Missing {col} in labs: {count} records")
 
-        # Log issues
-        if issues:
-            logger.warning(f"Validation issues: {issues}")
-            output_path.mkdir(parents=True, exist_ok=True)
-            with open(output_path / issues_file, "w") as f:
+        # Log issues and always create validation_issues.txt
+        output_path.mkdir(parents=True, exist_ok=True)
+        with open(output_path / issues_file, "w") as f:
+            if issues:
+                logger.warning(f"Validation issues: {issues}")
                 f.write("\n".join(issues))
+            else:
+                logger.info("No validation issues found")
+                f.write("No issues detected")
 
         # Save validated data
         output_path.mkdir(parents=True, exist_ok=True)
